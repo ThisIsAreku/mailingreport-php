@@ -380,7 +380,7 @@ class MRApiClient extends Client
      */
     public function getMailingList($id)
     {
-        return $this->get(sprintf('mailing-ists/%s', $id));
+        return $this->get(sprintf('mailing-lists/%s', $id));
     }
 
     /**
@@ -392,7 +392,7 @@ class MRApiClient extends Client
      */
     public function getMailingLists(array $parameters = null)
     {
-        return $this->get('mailing-ists', $parameters);
+        return $this->get('mailing-lists', $parameters);
     }
 
     /**
@@ -404,7 +404,7 @@ class MRApiClient extends Client
      */
     public function getContactsForMailingList($id)
     {
-        return $this->get(sprintf('mailing-ists/%s/contacts', $id));
+        return $this->get(sprintf('mailing-lists/%s/contacts', $id));
     }
 
     /**
@@ -561,7 +561,7 @@ class MRApiClient extends Client
      */
     public function helloWorld()
     {
-        return $this->get('helloWorld');
+        return $this->get('hello-world');
     }
 
     /**
@@ -571,6 +571,6 @@ class MRApiClient extends Client
      */
     public function systemDate()
     {
-        return $this->get('systemDate');
+        return $this->get('system-date');
     }
 }
