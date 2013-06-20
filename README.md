@@ -1,8 +1,8 @@
 # MailingReport PHP [![Build Status](https://secure.travis-ci.org/mailingreport/mailingreport-php.png?branch=master)](http://travis-ci.org/mailingreport/mailingreport-php)
 
 The official PHP client for the MailingReport API.
-For more information, documentation, integration, plugins, ... about MailingReport API, please visit the sandbox:
-http://developers.mailingreport.com/api/
+For more information, documentation, integration, plugins, ... about MailingReport API, please visit the developers dedicated website:
+http://developers.mailingreport.com
 
 # Installation
 
