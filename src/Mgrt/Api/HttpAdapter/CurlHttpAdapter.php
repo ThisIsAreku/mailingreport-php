@@ -51,7 +51,7 @@ class CurlHttpAdapter implements HttpAdapterInterface
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $verb);
         curl_setopt($curl, CURLOPT_URL, sprintf('%s/%s', $this->baseUrl, $url));
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Accept: application/json'));
         curl_setopt($curl, CURLOPT_USERAGENT, sprintf('mgrt-php/%s curl/%s PHP/%s', \Mgrt\Api\Client\Client::VERSION, $curl_version['version'], PHP_VERSION));
 
         return $curl;
