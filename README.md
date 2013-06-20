@@ -170,9 +170,10 @@ if ($response->isSuccessful()) {
 To create a new contact, see below:
 
 ``` php
-$response = $client->createContact(array('contact' => array(
-                'email' => 'foo@bar.com'
-            )));
+$response = $client->createContact(array(
+                'email' => 'foo@bar.com',
+                'mailing_lists' => array(1)
+            ));
 
 if ($response->isSuccessful()) {
     $newContact = $response->getResult(); 
