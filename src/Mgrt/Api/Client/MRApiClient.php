@@ -25,9 +25,9 @@ class MRApiClient extends Client
      *
      * @return Mgrt\Api\Builder\ResultBuilderInterface
      */
-    public function getCustomFields()
+    public function getCustomFields(array $parameters = null)
     {
-        return $this->get('customFields');
+        return $this->get('custom-fields', $parameters);
     }
 
     /**
@@ -39,7 +39,7 @@ class MRApiClient extends Client
      */
     public function getApiKey($id)
     {
-        return $this->get(sprintf('apiKeys/%s', $id));
+        return $this->get(sprintf('api-keys/%s', $id));
     }
 
     /**
@@ -49,7 +49,7 @@ class MRApiClient extends Client
      */
     public function getApiKeys(array $parameters = null)
     {
-        return $this->get('apiKeys', $parameters);
+        return $this->get('api-keys', $parameters);
     }
 
     /**
@@ -61,7 +61,7 @@ class MRApiClient extends Client
      */
     public function enableApiKey($id)
     {
-        return $this->put(sprintf('apiKeys/%s/enable', $id));
+        return $this->put(sprintf('api-keys/%s/enable', $id));
     }
 
     /**
@@ -73,7 +73,7 @@ class MRApiClient extends Client
      */
     public function disableApiKey($id)
     {
-        return $this->put(sprintf('apiKeys/%s/disable', $id));
+        return $this->put(sprintf('api-keys/%s/disable', $id));
     }
 
     /**
@@ -121,7 +121,7 @@ class MRApiClient extends Client
      */
     public function createCampaign(array $parameters)
     {
-        return $this->post('campaigns', $parameters);
+        return $this->post('campaigns', array('campaign' => $parameters));
     }
 
     /**
@@ -134,7 +134,7 @@ class MRApiClient extends Client
      */
     public function replaceCampaign($id, array $parameters)
     {
-        return $this->put(sprintf('campaigns/%s', $id), $parameters);
+        return $this->put(sprintf('campaigns/%s', $id), array('campaign' => $parameters));
     }
 
     /**
@@ -147,7 +147,7 @@ class MRApiClient extends Client
      */
     public function updateCampaign($id, array $parameters)
     {
-        return $this->patch(sprintf('campaigns/%s', $id), $parameters);
+        return $this->patch(sprintf('campaigns/%s', $id), array('campaign' => $parameters));
     }
 
     /**
@@ -173,7 +173,7 @@ class MRApiClient extends Client
      */
     public function scheduleCampaign($id, array $parameters)
     {
-        return $this->put(sprintf('campaigns/%s', $id), $parameters);
+        return $this->put(sprintf('campaigns/%s', $id), array('campaign' => $parameters));
     }
 
     /**
@@ -270,7 +270,7 @@ class MRApiClient extends Client
      */
     public function createContact(array $parameters)
     {
-        return $this->post('contacts', $parameters);
+        return $this->post('contacts', array('contact' => $parameters));
     }
 
     /**
@@ -283,7 +283,7 @@ class MRApiClient extends Client
      */
     public function replaceContact($id, array $parameters)
     {
-        return $this->put(sprintf('contacts/%s', $id), $parameters);
+        return $this->put(sprintf('contacts/%s', $id), array('contact' => $parameters));
     }
 
     /**
@@ -296,7 +296,7 @@ class MRApiClient extends Client
      */
     public function updateContact($id, array $parameters)
     {
-        return $this->patch(sprintf('contacts/%s', $id), $parameters);
+        return $this->patch(sprintf('contacts/%s', $id), array('contact' => $parameters));
     }
 
     /**
@@ -380,7 +380,7 @@ class MRApiClient extends Client
      */
     public function getMailingList($id)
     {
-        return $this->get(sprintf('mailingLists/%s', $id));
+        return $this->get(sprintf('mailing-ists/%s', $id));
     }
 
     /**
@@ -392,7 +392,7 @@ class MRApiClient extends Client
      */
     public function getMailingLists(array $parameters = null)
     {
-        return $this->get('mailingLists');
+        return $this->get('mailing-ists', $parameters);
     }
 
     /**
@@ -404,7 +404,7 @@ class MRApiClient extends Client
      */
     public function getContactsForMailingList($id)
     {
-        return $this->get(sprintf('mailingLists/%s/contacts', $id));
+        return $this->get(sprintf('mailing-ists/%s/contacts', $id));
     }
 
     /**
@@ -416,7 +416,7 @@ class MRApiClient extends Client
      */
     public function createMailingList(array $parameters)
     {
-        return $this->post('mailingLists', $parameters);
+        return $this->post('mailing-lists', array('mailing_list' => $parameters));
     }
 
     /**
@@ -429,7 +429,7 @@ class MRApiClient extends Client
      */
     public function updateMailingList($id, array $parameters)
     {
-        return $this->put(sprintf('mailingLists/%s', $id), $parameters);
+        return $this->put(sprintf('mailing-lists/%s', $id), array('mailing_list' => $parameters));
     }
 
     /**
@@ -441,7 +441,7 @@ class MRApiClient extends Client
      */
     public function removeMailingList($id)
     {
-        return $this->delete(sprintf('mailingLists/%s', $id));
+        return $this->delete(sprintf('mailing-lists/%s', $id));
     }
 
     /**
@@ -465,7 +465,7 @@ class MRApiClient extends Client
      */
     public function getSenders(array $parameters = null)
     {
-        return $this->get('senders');
+        return $this->get('senders', $parameters);
     }
 
     /**
@@ -513,7 +513,7 @@ class MRApiClient extends Client
      */
     public function createTemplate(array $parameters)
     {
-        return $this->post('templates', $parameters);
+        return $this->post('templates', array('template' => $parameters));
     }
 
     /**
@@ -526,7 +526,7 @@ class MRApiClient extends Client
      */
     public function updateTemplate($id , array $parameters)
     {
-        return $this->patch(sprintf('templates/%s', $id), $parameters);
+        return $this->patch(sprintf('templates/%s', $id), array('template' => $parameters));
     }
 
     /**
@@ -539,7 +539,7 @@ class MRApiClient extends Client
      */
     public function replaceTemplate($id , array $parameters)
     {
-        return $this->put(sprintf('templates/%s', $id), $parameters);
+        return $this->put(sprintf('templates/%s', $id), array('template' => $parameters));
     }
 
     /**
