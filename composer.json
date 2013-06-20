@@ -1,8 +1,8 @@
 {
     "name": "mailingreport/mgrt-php",
     "type": "library",
-    "description": "A wrapper around mgrt Api.",
-    "keywords": ["api", "mailingreport", "email marketing", "email transactional"],
+    "description": "Official PHP library for the MailingRepor API.",
+    "keywords": ["api", "mailingreport", "email marketing", "email transactional", "wrapper", "campaign"],
     "license": "MIT",
     "autoload": {
         "psr-0": { "Mgrt": "src/" }
