@@ -3,8 +3,8 @@
 namespace Mgrt\Api\Response;
 
 use Mgrt\Api\Factory\ResultFactory;
-use Mgrt\API\Builder\ObjectResultBuilder;
-use Mgrt\API\Builder\ArrayResultBuilder;
+use Mgrt\Api\Builder\ObjectResultBuilder;
+use Mgrt\Api\Builder\ArrayResultBuilder;
 
 class Response
 {
