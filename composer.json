@@ -1,5 +1,5 @@
 {
-    "name": "mailingreport/mgrt-php",
+    "name": "mailingreport/mailingreport-php",
     "type": "library",
     "description": "Official PHP library for the MailingRepor API.",
     "keywords": ["api", "mailingreport", "email marketing", "email transactional", "wrapper", "campaign"],
