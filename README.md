@@ -188,9 +188,9 @@ if ($response->isSuccessful()) {
 For example, if you want to change the name of a given template, you can do this:
 
 ``` php
-$response = $client->updateCampaign(9999, array('campaign' => array(
+$response = $client->updateCampaign(9999, array(
                 'name' => 'A brand new name for my campaign'
-                )));
+            ));
 if ($response->isSuccessful()) {
     echo "Your campaign has got an new name.";
 }
@@ -199,7 +199,7 @@ if ($response->isSuccessful()) {
 ### Example 1: Update some contact custom fields values
 If you want to edit custom fields for a contact, you must do it like this:
 ``` php
-$response = $client->updateContact(1111, array('contact' => array(
+$response = $client->updateContact(1111, array(
                 'custom_fields' => array(
                     array(
                         'id'    => 3333, // Id of the custom field
@@ -210,7 +210,7 @@ $response = $client->updateContact(1111, array('contact' => array(
                         'value' => 'New bar'
                     )
                 )
-            )));
+            ));
 if ($response->isSuccessful()) {
     echo "Some of your contact's custom fields have been updated.";
 }

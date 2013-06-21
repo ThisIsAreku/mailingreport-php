@@ -1,7 +1,7 @@
 {
     "name": "mailingreport/mailingreport-php",
     "type": "library",
-    "description": "Official PHP library for the MailingRepor API.",
+    "description": "Official MailingReport library for PHP",
     "keywords": ["api", "mailingreport", "email marketing", "email transactional", "wrapper", "campaign"],
     "license": "MIT",
     "autoload": {
