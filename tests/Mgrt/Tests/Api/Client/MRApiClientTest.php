@@ -20,7 +20,6 @@ class MRApiClientTest extends \PHPUnit_Framework_TestCase
 
     public function testAllRoutes()
     {
-
         $clientMethods = $this->getClientMethods();
 
         $reflectionObject = new \ReflectionObject($this->apiClient);
@@ -42,7 +41,6 @@ class MRApiClientTest extends \PHPUnit_Framework_TestCase
                 $this->assertSame($result->getStatusCode(), 401, sprintf('Check if the route exists. Error in the function "%s"',$method->getName())); // If we got a 401 we are on a api route (no credentials) else we are not on a api route
             }
         }
-
     }
 
     private function getClientMethods()
