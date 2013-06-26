@@ -262,6 +262,18 @@ class MRApiClient extends Client
     }
 
     /**
+     * Resubscribe the contact
+     *
+     * @param integer $id
+     *
+     * @return Mgrt\Api\Builder\ResultBuilderInterface
+     */
+    public function resubscribeContact($id)
+    {
+        return $this->put(sprintf('contacts/%s/resubscribe', $id));
+    }
+
+    /**
      * Create a new contact
      *
      * @param array $parameters
