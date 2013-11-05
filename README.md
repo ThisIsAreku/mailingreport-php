@@ -2,7 +2,7 @@
 
 The official PHP client for the MailingReport API.
 For more information, documentation, integration, plugins, ... about MailingReport API, please visit the developers dedicated website:
-http://developers.mailingreport.com
+[https://fr.mailingreport.com/api/](https://fr.mailingreport.com/api/)
 
 # Installation
 
