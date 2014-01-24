@@ -1,0 +1,20 @@
+HTTP/1.1 201 Created
+Date: Fri, 31 Jan 2014 09:33:39 GMT
+Content-Type: application/json
+
+{
+  "mailing_list": {
+    "id": 3,
+    "links": {
+      "self": {
+        "href": "https://api.mgrt.net/mailing-lists/3"
+      },
+      "contacts": {
+        "href": "https://api.mgrt.net/mailing-lists/3/contacts"
+      },
+      "mailing_lists": {
+        "href": "https://api.mgrt.net/mailing-lists"
+      }
+    }
+  }
+}
