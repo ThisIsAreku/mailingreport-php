@@ -1,4 +1,6 @@
-# MailingReport PHP [![Build Status](https://secure.travis-ci.org/mailingreport/mailingreport-php.png?branch=master)](http://travis-ci.org/mailingreport/mailingreport-php)
+# MailingReport PHP SDK
+[![Latest Stable Version](https://poser.pugx.org/mailingreport/mailingreport-php/version.png)](https://packagist.org/packages/mailingreport/mailingreport-php)
+[![Build Status](https://travis-ci.org/mailingreport/mailingreport-php.png)](https://travis-ci.org/mailingreport/mailingreport-php)
 
 The official PHP client for the MailingReport API.
 For more information, documentation, integration, plugins, ... about MailingReport API, please visit the developers dedicated website:
@@ -16,13 +18,246 @@ The recommended way to install MailingReport API is through composer:
 }
 ```
 
+# Usage
+## Create an api client
+
+You can find these credentials in your MailingReport account inside the "Settings" section then "Api keys".
+
+``` php
+$api = \Mgrt\Client::factory(array(
+    'public_key' => 'your_public_key',
+    'private_key' => 'your_private_key',
+));
+```
+
+## Retrieving collection
+
+When retrieving a collection you will get a ```ResultCollection``` class. You can get the current page, the limit and the total number of elements in the global collection.
+
+``` php
+$contacts = $api->getContacts();
+
+$contacts->getPage(); // 1
+$contacts->getLimit(); // 50
+$contacts->getTotal(); // 250 for example
+```
+
+You can also set parameters when retrieving a collection.
+
+``` php
+$contacts = $contacts->getContacts(array(
+    'page'      => 2,
+    'limit'     => 10,
+    'sort'      => 'createdAt',
+    'direction' => 'asc',
+));
+
+$contacts->getPage(); // 2
+$contacts->getLimit(); // 10
+$contacts->getTotal(); // 250 for example
+```
+
+With the ResultCollection you can iterate over the collection.
+
+``` php
+foreach ($contacts as $contact) {
+    echo $contact->getId(); // 1 for example
+}
+```
+
+## Accounts
+
+__Available API methods__
+* ```$api->getAccount()``` will return a ```Account``` object.
+
+__Available methods on ```Account``` object__
+* ```$account->getId()``` will return an ```integer```.
+* ```$account->getCompany()``` will return a ```string```.
+* ```$account->getAddressStreet()``` will return a ```string```.
+* ```$account->getAddressCity()``` will return a ```string```.
+* ```$account->getAddressZipcode()``` will return a ```string```.
+* ```$account->getAddressCountry()``` will return a ```string```.
+* ```$account->getCurrency()``` will return a ```string```.
+* ```$account->getTimezone()``` will return a ```string```.
+* ```$account->getCredits()``` will return a ```integer```.
+* ```$account->getPlanType()``` will return a ```string```.
+
+
+## ApiKeys
+
+__Available API methods__
+* ```$api->getApiKeys()``` will return a ```ResultCollection ``` containing a collection of ```ApiKey```.
+* ```$api->getApiKey()``` will return a ```ApiKey``` object.
+* ```$api->createApiKey()``` will return a ```ApiKey``` object.
+* ```$api->updateApiKey()``` will return a ```boolean```.
+* ```$api->deleteApiKey()``` will return a ```boolean```.
+* ```$api->disableApiKey()``` will return a ```boolean```.
+* ```$api->enableApiKey()``` will return a ```boolean```.
+
+__Available methods on ```ApiKeys``` object__
+* ```$apiKey->getId()``` will return an ```integer```.
+* ```$apiKey->getName()``` will return a ```string```.
+* ```$apiKey->getPublicKey()``` will return a ```string```.
+* ```$apiKey->getPrivateKey()``` will return a ```string```.
+* ```$apiKey->getEnabled()``` will return a ```boolean```.
+* ```$apiKey->getCreatedAt()``` will return a ```DateTime```.
+* ```$apiKey->getDisabledAt()``` will return a ```DateTime```.
+
+
+## Campaigns
+
+__Available API methods__
+* ```$api->getCampaigns()``` will return a ```ResultCollection ``` containing a collection of ```Campaign```.
+* ```$api->getCampaign($contactId)``` will return a ```Contact``` object.
+* ```$api->createCampaign($campaign)``` will return a ```Contact``` object.
+* ```$api->updateCampaign($campaign)``` will return a ```boolean```.
+* ```$api->deleteCampaign($campaign)``` will return a ```boolean```.
+* ```$api->scheduleCampaign($campaign)``` will return a ```boolean```.
+* ```$api->unscheduleCampaign($campaign)``` will return a ```boolean```.
+
+__Available methods on ```Campaign``` object__
+* ```$campaign->getId()``` will return an ```integer```.
+* ```$campaign->getName()``` will return a ```string```.
+* ```$campaign->getMailingLists()``` will return an array of ```MailingList``` objects.
+* ```$campaign->getSubject()``` will return a ```string```.
+* ```$campaign->getBody()``` will return a ```string```.
+* ```$campaign->getFromMail()``` will return a ```string```.
+* ```$campaign->getFromName()``` will return a ```string```.
+* ```$campaign->getReplyMail()``` will return a ```string```.
+* ```$campaign->getCreatedAt()``` will return a ```DateTime```.
+* ```$campaign->getUpdatedAt()``` will return a ```DateTime```.
+* ```$campaign->getScheduledAt()``` will return a ```DateTime```.
+* ```$campaign->getSentAt()``` will return a ```DateTime```.
+* ```$campaign->getTrackingEndsAt()``` will return a ```DateTime```.
+* ```$campaign->getStatus()``` will return a ```string```.
+* ```$campaign->getIsPublic()``` will return a ```boolean```.
+* ```$campaign->getShareUrl()``` will return a ```string```.
+
+
+## Contacts
+
+__Available API methods__
+* ```$api->getContacts()``` will return a ```ResultCollection ``` containing a collection of ```Contact```.
+* ```$api->getContact($contactId)``` will return a ```Contact``` object.
+* ```$api->getContact($contactEmail)``` will return a ```Contact``` object.
+* ```$api->createContact($contact)``` will return a ```Contact``` object.
+* ```$api->updateContact($contact)``` will return a ```boolean```.
+* ```$api->deleteContact($contact)``` will return a ```boolean```.
+* ```$api->unsubscribeContact($contact)``` will return a ```boolean```.
+* ```$api->resubscribeContact($contact)``` will return a ```boolean```.
+
+__Available methods on ```Contact``` object__
+* ```$contact->getId()``` will return an ```integer```.
+* ```$contact->getEmail()``` will return a ```string```.
+* ```$contact->getMailingLists()``` will return an array of ```MailingList``` objects.
+* ```$contact->getCustomFields()``` will return an array of ```CustomField``` objects.
+* ```$contact->getLatitude()``` will return a ```string```.
+* ```$contact->getLongitude()``` will return a ```string```.
+* ```$contact->getCountryCode()``` will return a ```string```.
+* ```$contact->getTimeZone()``` will return a ```string```.
+* ```$contact->getCreatedAt()``` will return a ```DateTime```.
+* ```$contact->getUpdatedAt()``` will return a ```DateTime```.
+
+
+## Custom Fields
+
+__Available API methods__
+* ```$api->getCustomFields()``` will return a ```ResultCollection ``` containing a collection of ```CustomField```.
+
+__Available methods on ```CustomField``` object__
+* ```$customField->getId()``` will return an ```integer```.
+* ```$customField->getName()``` will return a ```string```.
+* ```$customField->getFieldType()``` will return a ```string```.
+* ```$customField->getValue()``` will return a ```string```.
+* ```$customField->getChoices()``` will return an array of ```string```.
+
+
+## Domains
+
+__Available API methods__
+* ```$api->getDomains()``` will return a ```ResultCollection ``` containing a collection of ```Domain```.
+* ```$api->getDomain($domainId)``` will return a ```Domain``` object.
+* ```$api->checkDomain($domain)``` will return a ```Domain``` object.
+
+__Available methods on ```Domain``` object__
+* ```$domain->getId()``` will return an ```integer```.
+* ```$domain->getName()``` will return a ```string```.
+* ```$domain->getFieldType()``` will return a ```string```.
+* ```$domain->getValue()``` will return a ```string```.
+* ```$domain->getChoices()``` will return an array of ```string```.
+
+
+## Invoices
+
+__Available methods on ```Invoice``` object__
+* ```$invoice->getId()``` will return an ```integer```.
+* ```$invoice->getNumber()``` will return a ```string```.
+* ```$invoice->getNetAmount()``` will return a ```float```.
+* ```$invoice->getTaxAmount()``` will return a ```float```.
+* ```$invoice->getTotalAmount()``` will return a ```float```.
+* ```$invoice->getDueAt()``` will return a ```DateTime```.
+* ```$invoice->getPaidAt()``` will return a ```DateTime```.
+* ```$invoice->getInvoiceLines()``` will return an array of ```InvoiceLine``` objects.
+
+__Available methods on ```InvoiceLine``` object__
+* ```$invoiceLine->getId()``` will return an ```integer```.
+* ```$invoiceLine->getTitle()``` will return a ```string```.
+* ```$invoiceLine->getDescription()``` will return a ```string```.
+* ```$invoiceLine->getQuantity()``` will return a ```float```.
+* ```$invoiceLine->getPrice()``` will return a ```float```.
+
+__Available API methods__
+* ```$api->getInvoices()``` will return a ```ResultCollection ``` containing a collection of ```Invoice```.
+* ```$api->getInvoice($invoiceId)``` will return a ```Invoice``` object.
+
+
+## MailingLists
+
+__Available methods on ```MailingList``` object__
+* ```$mailingList->getId()``` will return an ```integer```.
+* ```$mailingList->getName()``` will return a ```string```.
+* ```$mailingList->getCreatedAt()``` will return a ```DateTime```.
+* ```$mailingList->getUpdatedAt()``` will return a ```DateTime```.
+
+__Available API methods__
+* ```$api->getMailingLists()``` will return a ```ResultCollection ``` containing a collection of ```MailingList```.
+* ```$api->getMailingList($mailingListId)``` will return a ```MailingList``` object.
+* ```$api->createMailingList($mailingList)``` will return a ```MailingList``` object.
+* ```$api->updateMailingList($mailingList)``` will return a ```boolean```.
+* ```$api->deleteMailingList($mailingList)``` will return a ```boolean```.
+* ```$api->getMailingListContacts($mailingList)``` will return a ```ResultCollection ``` containing a collection of ```Contact```.
+
+
+## Senders
+
+__Available methods on ```Sender``` object__
+* ```$sender->getId()``` will return an ```integer```.
+* ```$sender->getEmail()``` will return a ```string```.
+* ```$sender->getEmailType()``` will return a ```string```.
+* ```$sender->getIsEnabled()``` will return a ```boolean```.
+
+__Available API methods__
+* ```$api->getSenders()``` will return a ```ResultCollection ``` containing a collection of ```Sender```.
+* ```$api->getSender($sender)``` will return a ```Sender``` object.
+* ```$api->deleteSender($sender)``` will return a ```boolean```.
+
+
+## Templates
+
+__Available methods on ```Template``` object__
+* ```$template->getId()``` will return an ```integer```.
+* ```$template->getName()``` will return a ```string```.
+* ```$template->getBody()``` will return a ```DateTime```.
+
+__Available API methods__
+* ```$api->getSenders()``` will return a ```ResultCollection ``` containing a collection of ```Template```.
+* ```$api->getTemplate($template)``` will return a ```Template``` object.
+* ```$api->deleteSender($template)``` will return a ```boolean```.
+
+
 ## Unit Tests
 
-To run unit tests, you'll need `cURL` and a set of dependencies you can install using Composer:
-
-```
-php composer.phar install
-```
+To run unit tests, you'll need a set of dependencies you can install using Composer
 
 Once installed, just launch the following command:
 
@@ -30,213 +265,23 @@ Once installed, just launch the following command:
 phpunit
 ```
 
+Rename the phpunit.xml.dist file to phpunit.xml, then uncomment the following lines and add your own API keys:
+
+``` php
+<php>
+    <!-- <server name="PUBLIC_KEY" value="your_public_key" /> -->
+    <!-- <server name="PRIVATE_KEY" value="your_private_key" /> -->
+</php>
+```
 You're done.
 
-## Quick start
-
-### Creating a client and get your account informations
-You can quickly use a web service client
-
-``` php
-use Mgrt\Api\Factory\ClientFactory;
-
-$client = ClientFactory::create(array(
-            'username' => 'my_username',
-            'password' => 'my_password'
-          ));
-
-// Let's find the information in your account
-$account = $client->getAccount()->getResult();
-
-// or you can do the same, calling directly the `get()` method of the client.
-$account = $client->get('/account')->getResult();
-```
-
-The client is using [Guzzle Adapter](http://guzzlephp.org/) as default http adapter.
-We also provide a Curl Http Adapter. To use it, you have to add an extra parameter to the client factory:
-``` php
-$client = ClientFactory::create(array(
-            'username' => 'my_username',
-            'password' => 'my_password',
-            'http_adapter' => new Mgrt\Api\HttpAdapter\CurlHttpAdapter(),
-          ));
-```
-And of course, you can write yours extending the HttpAdapterInterface.
-
-
-### Calling client methods and getting a response
-The client's methods like `get()` or `getFoo()` are returning of Response object you can use to know:
-- if request was successfull or not
-- the response status (status code like 200, 201, ..., 404)
-- the response content (json string)
-
-All client methods are visible in [`MRApiClient`](https://github.com/mailingreport/mailingreport-php/blob/master/src/Mgrt/Api/Client/MRApiClient.php) class.
-Here are a few examples:
-``` php
-$client->getAccount();
-$client->getTemplate();
-$client->getTemplates();
-$client->getContacts();
-$client->getContacts();
-$client->getContactHistory();
-$client->scheduleCampaign();
-$client->getInvoices();
-// ...
-```
-
-### Getting a formatted and usable result
-If you call the `getResult()` method on the response method, you are obtaining a `Result` or a `ResultCollection` object.
-These two kinds of objects are formatted and enhanced responses object.
-
-The `getResult()` method returns a single or a collection of `Result` objects by default.
-You can ask to return a multi-dimensional array instead of an array of objects by sending `true` as parameter like this:
-``` php
-// single result
-$template = $client->getTemplate(1111)->getResult(true);
-
-/*
-array(1) {
-  'template' =>
-  array(5) {
-    'id' =>
-    int(11)
-    'name' =>
-    string(16) "Name of my template"
-    'body' => "<html><body>My Body</body></html>"
-    ....
-*/
-
-
-// Collection
-$arr = $client->getTemplates()->getResult(true);
-```
-
-Returned Result objects lets you calling properties methods on them like:
-``` php
-$template->getName();
-$template->getBody();
-$template->getCreatedAt();
-```
-
-Note: Methods of Result objects are "MAGIC" and they are drawn form the camel case syntax of the resource return parameters.
-[Watch the GET Template returns parameters, name in API doc (/templates/{templateId}).](http://developers.mailingreport.dev/mgrtappdev.php/api/)
-
-#### Result collection
-Result collection returns paginated list of results.
-You can navigate through the whole list using dedicated methods
-``` php
-$collection = $client->getCampaigns(array(
-    'status' =>'drafted',
-    'sort' => 'createdAt',
-    'direction' => 'desc'
-))->getResult();
-
-$collection->getPage(); // Will returns the current page number of results
-$collection->getTotal(); // Will returns the total number of results
-$collection->getLimit(); // Will returns the page range of results (example 100 per 100)
-```
-
-`ResultCollection` results are iterable so you can simply browse them:
-``` php
-foreach ($collection as $campaign) {
-    echo $campaign->getSubject();
-}
-```
-
-### Check the response status first
-
-If the following find no response, it will return null as response:
-``` php
-$account = $client->get('account')->getResult();
-// returns NULL
-```
-
-So you can check the response status before continuing:
-``` php
-$response = $client->get('/templates/123');
-// or
-$response = $client->getTemplate(123);
-
-if ($response->isSuccessful()) {
-    $template = $response->getResult();
-    echo $template->getName();
-} else {
-    echo $response->getStatusCode().' Template was not found.';
-}
-
-```
-
-## How to create a new contact
-To create a new contact, see below:
-
-``` php
-$response = $client->createContact(array(
-                'email' => 'foo@bar.com',
-                'mailing_lists' => array(1)
-            ));
-
-if ($response->isSuccessful()) {
-    $newContact = $response->getResult(); 
-
-    echo "Your contact ".$newContact->getEmail()." has been created with id #".$newContact->getId();
-}
-```
-
-## How to make a partial update
-
-### Example 1: Update campaign name
-For example, if you want to change the name of a given template, you can do this:
-
-``` php
-$response = $client->updateCampaign(9999, array(
-                'name' => 'A brand new name for my campaign'
-            ));
-if ($response->isSuccessful()) {
-    echo "Your campaign has got an new name.";
-}
-```
-
-### Example 1: Update some contact custom fields values
-If you want to edit custom fields for a contact, you must do it like this:
-``` php
-$response = $client->updateContact(1111, array(
-                'custom_fields' => array(
-                    array(
-                        'id'    => 3333, // Id of the custom field
-                        'value' => 'New foo' // New value
-                    ),
-                    array(
-                        'id' => 4444, 
-                        'value' => 'New bar'
-                    )
-                )
-            ));
-if ($response->isSuccessful()) {
-    echo "Some of your contact's custom fields have been updated.";
-}
-```
-
-## How to delete a contact
-To delete a contact, you have to do this:
-``` php
-$response = $client->deleteContact(99999);
-
-if ($response->isSuccessful()) {
-    echo "This contact has been deleted.";
-}
-```
-
 ## More informations
-* [Mailing Report API resources documentation](http://developers.mailingreport.com/api/)
+* [MailingReport API resources documentation](http://fr.mailingreport.com/api/)
 * [Guzzle PHP HTTP Client](http://guzzlephp.org/)
 
 ## Credits
 
-* [Franck Schneider](https://github.com/franckschneider)
-* [Remy Lemeunier](https://github.com/remyLemeunier)
-* [Benjamin Laugueux](https://github.com/blaugueux)
-
-Many thanks to [all other contributors](https://github.com/mailingreport/mgrt-php/contributors).
+Many thanks to [all contributors](https://github.com/mailingreport/mailingreport-php/contributors).
 
 ## License
 

@@ -1,0 +1,20 @@
+HTTP/1.1 201 Created
+Date: Fri, 31 Jan 2014 09:33:39 GMT
+Content-Type: application/json
+
+{
+  "campaign": {
+    "id": 1,
+    "links": {
+      "self": {
+        "href": "https://api.mgrt.net/campaigns/1"
+      },
+      "summary": {
+        "href": "https://api.mgrt.net/campaigns/1/summary"
+      },
+      "campaigns": {
+        "href": "https://api.mgrt.net/campaigns"
+      }
+    }
+  }
+}
