@@ -16,4 +16,7 @@ class Account extends BaseModel
     protected $timezone;
     protected $credits;
     protected $plan_type;
+    protected $header_background_color;
+    protected $header_text_color;
+    protected $logo_url;
 }
