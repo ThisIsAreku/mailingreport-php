@@ -7,5 +7,5 @@ namespace Mgrt;
  */
 class Version
 {
-    const VERSION = '2.0.1-dev';
+    const VERSION = '2.0.1';
 }
