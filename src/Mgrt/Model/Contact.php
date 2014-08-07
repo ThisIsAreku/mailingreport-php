@@ -36,18 +36,23 @@ class Contact extends BaseModel
                 $this->mailing_lists[$mailingList->getId()] = $mailingList;
             }
         }
+
+        return $this;
     }
 
     public function setCustomFields(array $datas)
     {
         foreach ($datas as $key => $value) {
             if ($value instanceof CustomField) {
-                $this->custom_fields[] = $value;
+                $this->custom_fields[$value->getId()] = $value;
             } else {
                 $customField = new CustomField();
-                $this->custom_fields[] = $customField->fromArray($value);
+                $customField->fromArray($value);
+                $this->custom_fields[$customField->getId()] = $customField;
             }
         }
+
+        return $this;
     }
 
     public function getCustomFieldsToArray()

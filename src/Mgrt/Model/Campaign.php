@@ -29,5 +29,7 @@ class Campaign extends BaseModel
             $mailingList = new MailingList();
             $this->mailing_lists[] = $mailingList->fromArray($value);
         }
+
+        return $this;
     }
 }

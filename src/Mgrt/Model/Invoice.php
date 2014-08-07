@@ -22,5 +22,7 @@ class Invoice extends BaseModel
             $invoiceLine = new InvoiceLine();
             $this->invoice_lines[] = $invoiceLine->fromArray($value);
         }
+
+        return $this;
     }
 }
