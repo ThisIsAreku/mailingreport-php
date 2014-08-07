@@ -13,7 +13,7 @@ The recommended way to install MailingReport API is through composer:
 ``` json
 {
     "require": {
-        "mailingreport/mailingreport-php": "dev-master"
+        "mailingreport/mailingreport-php": "@stable"
     }
 }
 ```
@@ -29,6 +29,11 @@ $api = \Mgrt\Client::factory(array(
     'private_key' => 'your_private_key',
 ));
 ```
+
+Here is a complete list of settings available. See also Guzzle's manual for more options.
+
+* ```public_key``` : Your API key
+* ```private_key``` : Your API secret
 
 ## Retrieving collection
 
@@ -65,12 +70,44 @@ foreach ($contacts as $contact) {
 }
 ```
 
+## Creating entries
+
+You can create a new object by using the default constructor and setting the fields one by one.
+
+```php
+$custom_field = new \Mgrt\Model\CustomField();
+$custom_field
+    ->setId(42);
+    ->setValue('the answer to life the universe and everything');
+$contact = new \Mgrt\Model\Contact();
+$contact
+    ->setEmail('somebody@example.com');
+    ->setCustomFields(array(
+        $custom_field
+    ));
+```
+or you can use php array structure to define new objects
+``` php
+$contact = new \Mgrt\Model\Contact();
+$contact->fromArray(array(
+    'email'         => 'somebody@example.com',
+    'custom_fields' => array(
+        'id'    => 42,
+        'value' => 'the answer to life the universe and everything'
+    )
+));
+```
+
+
+
 ## Accounts
 
 __Available API methods__
+
 * ```$api->getAccount()``` will return a ```Account``` object.
 
 __Available methods on ```Account``` object__
+
 * ```$account->getId()``` will return an ```integer```.
 * ```$account->getCompany()``` will return a ```string```.
 * ```$account->getAddressStreet()``` will return a ```string```.
@@ -83,18 +120,23 @@ __Available methods on ```Account``` object__
 * ```$account->getPlanType()``` will return a ```string```.
 
 
+
 ## ApiKeys
 
 __Available API methods__
+
 * ```$api->getApiKeys()``` will return a ```ResultCollection ``` containing a collection of ```ApiKey```.
-* ```$api->getApiKey()``` will return a ```ApiKey``` object.
-* ```$api->createApiKey()``` will return a ```ApiKey``` object.
-* ```$api->updateApiKey()``` will return a ```boolean```.
-* ```$api->deleteApiKey()``` will return a ```boolean```.
-* ```$api->disableApiKey()``` will return a ```boolean```.
-* ```$api->enableApiKey()``` will return a ```boolean```.
+* ```$api->getApiKey($apiKeyId)``` will return a ```ApiKey``` object.
+* ```$api->createApiKey(ApiKey $apiKey)``` will return a ```ApiKey``` object.
+* ```$api->updateApiKey(ApiKey $apiKey)``` will return a ```boolean```.
+* ```$api->deleteApiKey(ApiKey $apiKey)``` will return a ```boolean```.
+* ```$api->disableApiKey(ApiKey $apiKey)``` will return a ```boolean```.
+* ```$api->enableApiKey(ApiKey $apiKey)``` will return a ```boolean```.
 
 __Available methods on ```ApiKeys``` object__
+
+_Getters_
+
 * ```$apiKey->getId()``` will return an ```integer```.
 * ```$apiKey->getName()``` will return a ```string```.
 * ```$apiKey->getPublicKey()``` will return a ```string```.
@@ -103,19 +145,28 @@ __Available methods on ```ApiKeys``` object__
 * ```$apiKey->getCreatedAt()``` will return a ```DateTime```.
 * ```$apiKey->getDisabledAt()``` will return a ```DateTime```.
 
+_Setters_
+
+* ```$apiKey->setName($name)``` where ```$name``` is a ```string```.
+
+
 
 ## Campaigns
 
 __Available API methods__
+
 * ```$api->getCampaigns()``` will return a ```ResultCollection ``` containing a collection of ```Campaign```.
-* ```$api->getCampaign($contactId)``` will return a ```Contact``` object.
-* ```$api->createCampaign($campaign)``` will return a ```Contact``` object.
-* ```$api->updateCampaign($campaign)``` will return a ```boolean```.
-* ```$api->deleteCampaign($campaign)``` will return a ```boolean```.
-* ```$api->scheduleCampaign($campaign)``` will return a ```boolean```.
-* ```$api->unscheduleCampaign($campaign)``` will return a ```boolean```.
+* ```$api->getCampaign($contactId)``` will return a ```Campaign``` object.
+* ```$api->createCampaign(Campaign $campaign)``` will return a ```Campaign``` object.
+* ```$api->updateCampaign(Campaign $campaign)``` will return a ```boolean```.
+* ```$api->deleteCampaign(Campaign $campaign)``` will return a ```boolean```.
+* ```$api->scheduleCampaign(Campaign $campaign)``` will return a ```boolean```.
+* ```$api->unscheduleCampaign(Campaign $campaign)``` will return a ```boolean```.
 
 __Available methods on ```Campaign``` object__
+
+_Getters_
+
 * ```$campaign->getId()``` will return an ```integer```.
 * ```$campaign->getName()``` will return a ```string```.
 * ```$campaign->getMailingLists()``` will return an array of ```MailingList``` objects.
@@ -133,20 +184,35 @@ __Available methods on ```Campaign``` object__
 * ```$campaign->getIsPublic()``` will return a ```boolean```.
 * ```$campaign->getShareUrl()``` will return a ```string```.
 
+_Setters_
+
+* ```$campaign->setName($name)``` where ```$name``` is a ```string```.
+* ```$campaign->setMailingLists($mailingList)``` where ```$mailingList``` is an array of ```MailingList``` objects.
+* ```$campaign->setSubject($subject)``` where ```$subject``` is a ```string```.
+* ```$campaign->setBody($body)``` where ```$body``` is a ```string```.
+* ```$campaign->setFromMail($fromMail)``` where ```$fromMail``` is a ```string```.
+* ```$campaign->setFromName($fromName)``` where ```$fromName``` is a ```string```.
+* ```$campaign->setReplyMail($replyMail)``` where ```$replyMail``` is a ```string```.
+
+
 
 ## Contacts
 
 __Available API methods__
+
 * ```$api->getContacts()``` will return a ```ResultCollection ``` containing a collection of ```Contact```.
 * ```$api->getContact($contactId)``` will return a ```Contact``` object.
 * ```$api->getContact($contactEmail)``` will return a ```Contact``` object.
-* ```$api->createContact($contact)``` will return a ```Contact``` object.
-* ```$api->updateContact($contact)``` will return a ```boolean```.
-* ```$api->deleteContact($contact)``` will return a ```boolean```.
-* ```$api->unsubscribeContact($contact)``` will return a ```boolean```.
-* ```$api->resubscribeContact($contact)``` will return a ```boolean```.
+* ```$api->createContact(Contact $contact)``` will return a ```Contact``` object.
+* ```$api->updateContact(Contact $contact)``` will return a ```boolean```.
+* ```$api->deleteContact(Contact $contact)``` will return a ```boolean```.
+* ```$api->unsubscribeContact(Contact $contact)``` will return a ```boolean```.
+* ```$api->resubscribeContact(Contact $contact)``` will return a ```boolean```.
 
 __Available methods on ```Contact``` object__
+
+_Getters_
+
 * ```$contact->getId()``` will return an ```integer```.
 * ```$contact->getEmail()``` will return a ```string```.
 * ```$contact->getMailingLists()``` will return an array of ```MailingList``` objects.
@@ -158,13 +224,24 @@ __Available methods on ```Contact``` object__
 * ```$contact->getCreatedAt()``` will return a ```DateTime```.
 * ```$contact->getUpdatedAt()``` will return a ```DateTime```.
 
+_Setters_
+
+* ```$contact->setEmail($email)``` where ```$email``` is a ```string```.
+* ```$contact->setMailingLists($mailingList)``` where ```$mailingList``` is an array of ```MailingList``` objects.
+* ```$contact->setCustomFields($customFields)``` where ```$customFields``` is an array of ```CustomField``` objects.
+
+
 
 ## Custom Fields
 
+_Custom fields cannot be created or updated from the API_
+
 __Available API methods__
+
 * ```$api->getCustomFields()``` will return a ```ResultCollection ``` containing a collection of ```CustomField```.
 
 __Available methods on ```CustomField``` object__
+
 * ```$customField->getId()``` will return an ```integer```.
 * ```$customField->getName()``` will return a ```string```.
 * ```$customField->getFieldType()``` will return a ```string```.
@@ -172,24 +249,41 @@ __Available methods on ```CustomField``` object__
 * ```$customField->getChoices()``` will return an array of ```string```.
 
 
+
 ## Domains
 
+_Domains cannot be created or updated from the API_
+
 __Available API methods__
+
 * ```$api->getDomains()``` will return a ```ResultCollection ``` containing a collection of ```Domain```.
 * ```$api->getDomain($domainId)``` will return a ```Domain``` object.
-* ```$api->checkDomain($domain)``` will return a ```Domain``` object.
+* ```$api->checkDomain(Domain $domain)``` will return a ```Domain``` object.
 
 __Available methods on ```Domain``` object__
+
 * ```$domain->getId()``` will return an ```integer```.
-* ```$domain->getName()``` will return a ```string```.
-* ```$domain->getFieldType()``` will return a ```string```.
-* ```$domain->getValue()``` will return a ```string```.
-* ```$domain->getChoices()``` will return an array of ```string```.
+* ```$domain->getDomainName()``` will return a ```string```.
+* ```$domain->getCheckedAt()``` will return a ```DateTime```.
+* ```$domain->getSpfFqdn()``` will return a ```string```.
+* ```$domain->getSpfStatus()``` will return an ```integer```.
+* ```$domain->getDkimFqdn()``` will return a ```string```.
+* ```$domain->getDkimStatus()``` will return an ```integer```.
+* ```$domain->getPublicKey()``` will return a ```string```.
+
 
 
 ## Invoices
 
+_Invoices cannot be created or updated from the API_
+
+__Available API methods__
+
+* ```$api->getInvoices()``` will return a ```ResultCollection ``` containing a collection of ```Invoice```.
+* ```$api->getInvoice($invoiceId)``` will return a ```Invoice``` object.
+
 __Available methods on ```Invoice``` object__
+
 * ```$invoice->getId()``` will return an ```integer```.
 * ```$invoice->getNumber()``` will return a ```string```.
 * ```$invoice->getNetAmount()``` will return a ```float```.
@@ -200,59 +294,83 @@ __Available methods on ```Invoice``` object__
 * ```$invoice->getInvoiceLines()``` will return an array of ```InvoiceLine``` objects.
 
 __Available methods on ```InvoiceLine``` object__
+
 * ```$invoiceLine->getId()``` will return an ```integer```.
 * ```$invoiceLine->getTitle()``` will return a ```string```.
 * ```$invoiceLine->getDescription()``` will return a ```string```.
 * ```$invoiceLine->getQuantity()``` will return a ```float```.
 * ```$invoiceLine->getPrice()``` will return a ```float```.
 
-__Available API methods__
-* ```$api->getInvoices()``` will return a ```ResultCollection ``` containing a collection of ```Invoice```.
-* ```$api->getInvoice($invoiceId)``` will return a ```Invoice``` object.
 
 
 ## MailingLists
 
+__Available API methods__
+
+* ```$api->getMailingLists()``` will return a ```ResultCollection ``` containing a collection of ```MailingList```.
+* ```$api->getMailingList($mailingListId)``` will return a ```MailingList``` object.
+* ```$api->createMailingList(MailingList $mailingList)``` will return a ```MailingList``` object.
+* ```$api->updateMailingList(MailingList $mailingList)``` will return a ```boolean```.
+* ```$api->deleteMailingList(MailingList $mailingList)``` will return a ```boolean```.
+* ```$api->getMailingListContacts(MailingList $mailingList)``` will return a ```ResultCollection ``` containing a collection of ```Contact```.
+
 __Available methods on ```MailingList``` object__
+
+_Getters_
+
 * ```$mailingList->getId()``` will return an ```integer```.
 * ```$mailingList->getName()``` will return a ```string```.
 * ```$mailingList->getCreatedAt()``` will return a ```DateTime```.
 * ```$mailingList->getUpdatedAt()``` will return a ```DateTime```.
 
-__Available API methods__
-* ```$api->getMailingLists()``` will return a ```ResultCollection ``` containing a collection of ```MailingList```.
-* ```$api->getMailingList($mailingListId)``` will return a ```MailingList``` object.
-* ```$api->createMailingList($mailingList)``` will return a ```MailingList``` object.
-* ```$api->updateMailingList($mailingList)``` will return a ```boolean```.
-* ```$api->deleteMailingList($mailingList)``` will return a ```boolean```.
-* ```$api->getMailingListContacts($mailingList)``` will return a ```ResultCollection ``` containing a collection of ```Contact```.
+_Setters_
+
+* ```$mailingList->setName($name)``` where ```$name``` is a ```string```.
+
 
 
 ## Senders
 
+_Senders cannot be created or updated from the API_
+
+__Available API methods__
+
+* ```$api->getSenders()``` will return a ```ResultCollection ``` containing a collection of ```Sender```.
+* ```$api->getSender($senderId)``` will return a ```Sender``` object.
+* ```$api->deleteSender(Sender $sender)``` will return a ```boolean```.
+
 __Available methods on ```Sender``` object__
+
 * ```$sender->getId()``` will return an ```integer```.
 * ```$sender->getEmail()``` will return a ```string```.
 * ```$sender->getEmailType()``` will return a ```string```.
 * ```$sender->getIsEnabled()``` will return a ```boolean```.
 
-__Available API methods__
-* ```$api->getSenders()``` will return a ```ResultCollection ``` containing a collection of ```Sender```.
-* ```$api->getSender($sender)``` will return a ```Sender``` object.
-* ```$api->deleteSender($sender)``` will return a ```boolean```.
 
 
 ## Templates
 
+__Available API methods__
+
+* ```$api->getTemplates()``` will return a ```ResultCollection ``` containing a collection of ```Template```.
+* ```$api->getTemplate($templateId)``` will return a ```Template``` object.
+* ```$api->createTemplate(Template $template)``` will return a ```Template``` object.
+* ```$api->deleteTemplate(Template $template)``` will return a ```boolean```.
+* ```$api->updateTemplate(Template $template)``` will return a ```boolean```.
+
 __Available methods on ```Template``` object__
+
+_Getters_
+
 * ```$template->getId()``` will return an ```integer```.
 * ```$template->getName()``` will return a ```string```.
 * ```$template->getBody()``` will return a ```DateTime```.
 
-__Available API methods__
-* ```$api->getSenders()``` will return a ```ResultCollection ``` containing a collection of ```Template```.
-* ```$api->getTemplate($template)``` will return a ```Template``` object.
-* ```$api->deleteSender($template)``` will return a ```boolean```.
+_Setters_
+
+* ```$campaign->setName($name)``` where ```$name``` is a ```string```.
+* ```$template->setBody($body)``` where ```$body``` is a ```string```.
+
 
 
 ## Unit Tests
