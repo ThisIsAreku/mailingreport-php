@@ -90,7 +90,7 @@ class ApiKeysTest extends \Guzzle\Tests\GuzzleTestCase
         $this->setMockResponse($this->client, array(
             'api-keys/disableApiKey',
         ));
-        $result = $this->client->enableApiKey($apiKey);
+        $result = $this->client->disableApiKey($apiKey);
 
         $this->assertInternalType('boolean', $result);
         $this->assertEquals(true, $result);

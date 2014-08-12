@@ -15,5 +15,6 @@ return array(
         'mailingLists.php',
         'senders.php',
         'templates.php',
+        'webhooks.php',
     ),
 );

@@ -12,6 +12,8 @@ use Mgrt\Model\Domain;
 use Mgrt\Model\MailingList;
 use Mgrt\Model\Sender;
 use Mgrt\Model\Template;
+use Mgrt\Model\Webhook;
+use Mgrt\Model\WebhookCall;
 
 class Client extends BaseClient
 {
@@ -458,6 +460,112 @@ class Client extends BaseClient
     {
         $command = $this->getCommand('DeleteTemplate', array(
             'templateId' => $template->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+
+
+    /**
+     * WEBHOOKS
+     */
+    public function getWebhooks()
+    {
+        $command = $this->getCommand('ListWebhooks');
+
+        return $this->execute($command);
+    }
+    public function getWebhook($webhookId)
+    {
+        $command = $this->getCommand('GetWebhook', array(
+            'webhookId' => $webhookId,
+        ));
+
+        return $this->execute($command);
+    }
+    public function createWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('CreateWebhook', array(
+            'webhook' => array(
+                'name'              => $webhook->getName(),
+                'callback_url'      => $webhook->getCallbackUrl(),
+                'listened_events'   => $webhook->getListenedEvents(),
+                'listened_sources'  => $webhook->getListenedSources(),
+            ),
+        ));
+
+        $savedWebhook = $this->execute($command);
+        $webhook->setId($savedWebhook->getId());
+
+        return $webhook;
+    }
+    public function updateWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('UpdateWebhook', array(
+            'webhookId' => $webhook->getId(),
+            'webhook'   => array(
+                'name'              => $webhook->getName(),
+                'callback_url'      => $webhook->getCallbackUrl(),
+                'listened_events'   => $webhook->getListenedEvents(),
+                'listened_sources'  => $webhook->getListenedSources(),
+            ),
+        ));
+
+        return $this->execute($command);
+    }
+    public function deleteWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('DeleteWebhook', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function disableWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('DisableWebhook', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function enableWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('EnableWebhook', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function resetKeyWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('ResetKeyWebhook', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function triggerTestWebhook(Webhook $webhook)
+    {
+        $command = $this->getCommand('TriggerTestWebhook', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function getWebhookCalls(Webhook $webhook)
+    {
+        $command = $this->getCommand('ListWebhookCalls', array(
+            'webhookId' => $webhook->getId(),
+        ));
+
+        return $this->execute($command);
+    }
+    public function getWebhookCall(Webhook $webhook, $webhookCallId)
+    {
+        $command = $this->getCommand('GetWebhook', array(
+            'webhookId' => $webhook->getId(),
+            'webhookCallId' => $webhookCallId,
         ));
 
         return $this->execute($command);
