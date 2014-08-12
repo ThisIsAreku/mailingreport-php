@@ -13,6 +13,10 @@ Content-Type: application/json
     "currency": "EUR",
     "plan_type": "prepaid",
     "credits": 1234567,
+    "header_background_color": "A1A1A1",
+    "header_text_color": "2B2B2B",
+    "logo_url": "/example.png",
+    "platform_name": "Example Mailing Tool",
     "links": {
       "self": {
         "href": "https://api.mgrt.net/account"
