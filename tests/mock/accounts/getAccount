@@ -15,7 +15,8 @@ Content-Type: application/json
     "credits": 1234567,
     "header_background_color": "A1A1A1",
     "header_text_color": "2B2B2B",
-    "logo_url": "/example.png",
+    "logo_url": "http://example.com/my-logo.png",
+    "login_url": "http://example.com/login",
     "platform_name": "Example Mailing Tool",
     "links": {
       "self": {
