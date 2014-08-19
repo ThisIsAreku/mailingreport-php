@@ -50,7 +50,7 @@ return array(
         ),
         'UpdateWebhook' => array(
             'httpMethod' => 'PUT',
-            'uri'        => 'wehooks/{webhookId}',
+            'uri'        => 'webhooks/{webhookId}',
             'responseClass' => 'Mgrt\Response\ResultUpdatedResponse',
             'parameters' => array(
                 'webhookId' => array(
