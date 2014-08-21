@@ -32,15 +32,15 @@ return array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'callbackUrl' => array(
+                        'callback_url' => array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'listenedEvents' => array(
+                        'listened_events' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
-                        'listenedSources' => array(
+                        'listened_sources' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
@@ -58,7 +58,7 @@ return array(
                     'type'     => 'string',
                     'required' => true,
                 ),
-                'edit_wehook' => array(
+                'edit_webhook' => array(
                     'type' => 'object',
                     'location' => 'postField',
                     'properties' => array(
@@ -66,15 +66,15 @@ return array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'callbackUrl' => array(
+                        'callback_url' => array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'listenedEvents' => array(
+                        'listened_events' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
-                        'listenedSources' => array(
+                        'listened_sources' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),

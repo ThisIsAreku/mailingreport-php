@@ -486,7 +486,7 @@ class Client extends BaseClient
     public function createWebhook(Webhook $webhook)
     {
         $command = $this->getCommand('CreateWebhook', array(
-            'webhook' => array(
+            'create_webhook' => array(
                 'name'              => $webhook->getName(),
                 'callback_url'      => $webhook->getCallbackUrl(),
                 'listened_events'   => $webhook->getListenedEvents(),
@@ -503,7 +503,7 @@ class Client extends BaseClient
     {
         $command = $this->getCommand('UpdateWebhook', array(
             'webhookId' => $webhook->getId(),
-            'webhook'   => array(
+            'edit_webhook'   => array(
                 'name'              => $webhook->getName(),
                 'callback_url'      => $webhook->getCallbackUrl(),
                 'listened_events'   => $webhook->getListenedEvents(),
