@@ -7,13 +7,13 @@ class ContactTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider addMailingListsAndTransformToArrayProvider
      */
-    public function testAddMailingListsAndTransformToArray($existing, $added, $excepted)
+    public function testAddMailingListsAndTransformToArray($existing, $added, $expected)
     {
         $contact = new \Mgrt\Model\Contact();
         $contact->setMailingLists($existing);
         $contact->addMailingList($added);
 
-        $this->assertEquals($contact->getMailingListsToArray(), $excepted);
+        $this->assertEquals($contact->getMailingListsToArray(), $expected);
         foreach ($contact->getMailingListsToArray() as $key => $value) {
             $this->assertInternalType('integer', $value);
         }
