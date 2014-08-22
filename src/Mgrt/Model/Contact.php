@@ -88,10 +88,10 @@ class Contact extends BaseModel
 
     public function getMailingListsToArray()
     {
-        $mailing_lists = $this->getMailingLists();
-        array_walk($mailing_lists, function(&$mailingList) {
-            $mailingList = $mailingList->getId();
-        });
+        $mailing_lists = array();
+        foreach ($this->getMailingLists() as $value) {
+            $mailing_lists[] = $value->getId();
+        }
 
         return $mailing_lists;
     }
