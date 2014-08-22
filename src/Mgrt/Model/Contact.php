@@ -20,12 +20,10 @@ class Contact extends BaseModel
 
     public function addMailingList(MailingList $mailingList)
     {
-        $this->mailing_lists = array_merge($this->mailing_lists, array($mailingList->getId() => $mailingList));
-
-        return $this;
+        return $this->addMailingLists(array($mailingList));
     }
 
-    public function setMailingLists(array $datas)
+    public function addMailingLists(array $datas)
     {
         foreach ($datas as $key => $value) {
             if ($value instanceof MailingList) {
@@ -40,7 +38,20 @@ class Contact extends BaseModel
         return $this;
     }
 
-    public function setCustomFields(array $datas)
+    public function setMailingLists(array $datas)
+    {
+        $this->mailing_lists = array();
+
+        return $this->addMailingLists($datas);
+    }
+
+    public function addCustomField(CustomField $customField)
+    {
+        return $this->addCustomFields(array($customField));
+    }
+
+
+    public function addCustomFields(array $datas)
     {
         foreach ($datas as $key => $value) {
             if ($value instanceof CustomField) {
@@ -53,6 +64,13 @@ class Contact extends BaseModel
         }
 
         return $this;
+    }
+
+    public function setCustomFields(array $datas)
+    {
+        $this->custom_fields = array();
+        
+        return $this->addCustomFields($datas);
     }
 
     public function getCustomFieldsToArray()
