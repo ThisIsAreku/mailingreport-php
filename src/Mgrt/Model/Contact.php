@@ -86,11 +86,15 @@ class Contact extends BaseModel
         return $custom_fields;
     }
 
-    public function getMailingListsToArray()
+    public function getMailingListsToArray($indexed = true)
     {
         $mailing_lists = array();
         foreach ($this->getMailingLists() as $value) {
-            $mailing_lists[] = $value->getId();
+            if ($indexed) {
+                $mailing_lists[] = $value->getId();
+            } else {
+                $mailing_lists[$value->getId()] = $value->getId();
+            }
         }
 
         return $mailing_lists;
