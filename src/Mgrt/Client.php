@@ -488,9 +488,9 @@ class Client extends BaseClient
         $command = $this->getCommand('CreateWebhook', array(
             'create_webhook' => array(
                 'name'              => $webhook->getName(),
-                'callback_url'      => $webhook->getCallbackUrl(),
-                'listened_events'   => $webhook->getListenedEvents(),
-                'listened_sources'  => $webhook->getListenedSources(),
+                'callbackUrl'      => $webhook->getCallbackUrl(),
+                'listenedEvents'   => $webhook->getListenedEvents(),
+                'listenedSources'  => $webhook->getListenedSources(),
             ),
         ));
 
@@ -505,9 +505,9 @@ class Client extends BaseClient
             'webhookId' => $webhook->getId(),
             'edit_webhook'   => array(
                 'name'              => $webhook->getName(),
-                'callback_url'      => $webhook->getCallbackUrl(),
-                'listened_events'   => $webhook->getListenedEvents(),
-                'listened_sources'  => $webhook->getListenedSources(),
+                'callbackUrl'      => $webhook->getCallbackUrl(),
+                'listenedEvents'   => $webhook->getListenedEvents(),
+                'listenedSources'  => $webhook->getListenedSources(),
             ),
         ));
 

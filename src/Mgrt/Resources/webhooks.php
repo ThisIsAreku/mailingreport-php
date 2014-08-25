@@ -32,15 +32,15 @@ return array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'callback_url' => array(
+                        'callbackUrl' => array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'listened_events' => array(
+                        'listenedEvents' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
-                        'listened_sources' => array(
+                        'listenedSources' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
@@ -66,15 +66,15 @@ return array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'callback_url' => array(
+                        'callbackUrl' => array(
                             'type'     => 'string',
                             'required' => true,
                         ),
-                        'listened_events' => array(
+                        'listenedEvents' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
-                        'listened_sources' => array(
+                        'listenedSources' => array(
                             'type'     => 'array',
                             'required' => false,
                         ),
