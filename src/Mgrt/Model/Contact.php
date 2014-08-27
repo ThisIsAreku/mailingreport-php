@@ -8,6 +8,7 @@ use Mgrt\Model\MailingList;
 class Contact extends BaseModel
 {
     protected $id;
+    protected $status;
     protected $email;
     protected $mailing_lists = array();
     protected $custom_fields = array();
