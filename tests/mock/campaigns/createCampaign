@@ -4,17 +4,6 @@ Content-Type: application/json
 
 {
   "campaign": {
-    "id": 1,
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/campaigns/1"
-      },
-      "summary": {
-        "href": "https://api.mgrt.net/campaigns/1/summary"
-      },
-      "campaigns": {
-        "href": "https://api.mgrt.net/campaigns"
-      }
-    }
+    "id": 1
   }
 }

@@ -10,15 +10,7 @@ Content-Type: application/json
     "results": [
       {
         "id": 1,
-        "name": "My first template",
-        "links": {
-          "self": {
-            "href": "https://api.mgrt.net/templates/1"
-          },
-          "templates": {
-            "href": "https://api.mgrt.net/templates"
-          }
-        }
+        "name": "My first template"
       },
       {
         "id": 2,
@@ -32,20 +24,6 @@ Content-Type: application/json
           }
         }
       }
-    ],
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/templates?limit=2&page=1"
-      },
-      "first": {
-        "href": "https://api.mgrt.net/templates?limit=2&page=1"
-      },
-      "last": {
-        "href": "https://api.mgrt.net/templates?limit=2&page=3"
-      },
-      "next": {
-        "href": "https://api.mgrt.net/templates?limit=2&page=2"
-      }
-    }
+    ]
   }
 }

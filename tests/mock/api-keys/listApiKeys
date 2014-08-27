@@ -13,15 +13,7 @@ Content-Type: application/json
         "name": "My iOS App",
         "public_key": "1234567890azertyuiop",
         "enabled": true,
-        "created_at": "2012-12-10T20:45:48+0000",
-        "links": {
-          "self": {
-            "href": "https://api.mgrt.net/api-keys/1"
-          },
-          "api_keys": {
-            "href": "https://api.mgrt.net/api-keys"
-          }
-        }
+        "created_at": "2012-12-10T20:45:48+0000"
       },
       {
         "id": 2,
@@ -29,27 +21,8 @@ Content-Type: application/json
         "public_key": "0987654321azertyuiop",
         "enabled": false,
         "created_at": "2013-12-24T07:46:20+0000",
-        "disabled_at": "2013-12-24T07:46:29+0000",
-        "links": {
-          "self": {
-            "href": "https://api.mgrt.net/api-keys/2"
-          },
-          "api_keys": {
-            "href": "https://api.mgrt.net/api-keys"
-          }
-        }
+        "disabled_at": "2013-12-24T07:46:29+0000"
       }
-    ],
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/api-keys?limit=50&page=1"
-      },
-      "first": {
-        "href": "https://api.mgrt.net/api-keys?limit=50&page=1"
-      },
-      "last": {
-        "href": "https://api.mgrt.net/api-keys?limit=50&page=1"
-      }
-    }
+    ]
   }
 }

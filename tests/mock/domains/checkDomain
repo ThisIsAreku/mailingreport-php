@@ -11,14 +11,6 @@ Content-Type: application/json
     "public_key": "-----BEGIN PUBLIC KEY-----\nloremispum\n-----END PUBLIC KEY-----\n",
     "dkim_status": 2,
     "spf_status": 2,
-    "checked_at": "2014-02-01T18:25:13+0000",
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/domains/1"
-      },
-      "domains": {
-        "href": "https://api.mgrt.net/domains"
-      }
-    }
+    "checked_at": "2014-02-01T18:25:13+0000"
   }
 }

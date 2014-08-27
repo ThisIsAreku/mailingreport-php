@@ -4,17 +4,6 @@ Content-Type: application/json
 
 {
   "mailing_list": {
-    "id": 3,
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/mailing-lists/3"
-      },
-      "contacts": {
-        "href": "https://api.mgrt.net/mailing-lists/3/contacts"
-      },
-      "mailing_lists": {
-        "href": "https://api.mgrt.net/mailing-lists"
-      }
-    }
+    "id": 3
   }
 }

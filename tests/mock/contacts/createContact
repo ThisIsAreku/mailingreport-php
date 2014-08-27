@@ -4,17 +4,6 @@ Content-Type: application/json
 
 {
   "contact": {
-    "id": 1,
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/contacts/1"
-      },
-      "summary": {
-        "href": "https://api.mgrt.net/contacts/1/summary"
-      },
-      "contacts": {
-        "href": "https://api.mgrt.net/contacts"
-      }
-    }
+    "id": 1
   }
 }

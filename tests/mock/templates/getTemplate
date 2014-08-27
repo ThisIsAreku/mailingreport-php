@@ -7,14 +7,6 @@ Content-Type: application/json
     "id": 1,
     "name": "Responsive template",
     "body": "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n</body>\r\n</html>",
-    "updated_at": "2013-11-20T17:36:25+0000",
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/templates/1"
-      },
-      "templates": {
-        "href": "https://api.mgrt.net/templates"
-      }
-    }
+    "updated_at": "2013-11-20T17:36:25+0000"
   }
 }

@@ -4,14 +4,6 @@ Content-Type: application/json
 
 {
   "template": {
-    "id": 1,
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/templates/1"
-      },
-      "templates": {
-        "href": "https://api.mgrt.net/templates"
-      }
-    }
+    "id": 1
   }
 }

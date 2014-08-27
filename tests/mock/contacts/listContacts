@@ -13,51 +13,15 @@ Content-Type: application/json
         "id": 1,
         "email": "john@doe.com",
         "created_at": "2014-01-27T16:54:51+0000",
-        "updated_at": "2014-01-28T09:37:21+0000",
-        "links": {
-          "self": {
-            "href": "https://api.mgrt.net/contacts/1"
-          },
-          "summary": {
-            "href": "https://api.mgrt.net/contacts/1/summary"
-          },
-          "contacts": {
-            "href": "https://api.mgrt.net/contacts"
-          }
-        }
+        "updated_at": "2014-01-28T09:37:21+0000"
       },
       {
         "status": "unsubscribed",
         "id": 2,
         "email": "john@smith.com",
         "created_at": "2014-01-24T15:06:47+0000",
-        "updated_at": "2014-01-24T15:06:47+0000",
-        "links": {
-          "self": {
-            "href": "https://api.mgrt.net/contacts/2"
-          },
-          "summary": {
-            "href": "https://api.mgrt.net/contacts/2/summary"
-          },
-          "contacts": {
-            "href": "https://api.mgrt.net/contacts"
-          }
-        }
+        "updated_at": "2014-01-24T15:06:47+0000"
       }
-    ],
-    "links": {
-      "self": {
-        "href": "https://api.mgrt.net/contacts?limit=2&page=1"
-      },
-      "first": {
-        "href": "https://api.mgrt.net/contacts?limit=2&page=1"
-      },
-      "last": {
-        "href": "https://api.mgrt.net/contacts?limit=2&page=129"
-      },
-      "next": {
-        "href": "https://api.mgrt.net/contacts?limit=2&page=2"
-      }
-    }
+    ]
   }
 }
