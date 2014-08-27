@@ -37,6 +37,12 @@ return array(
                     'enum'     => array('sent', 'drafted', 'scheduled', 'sending'),
                     'required' => false,
                 ),
+                'public' => array(
+                    'location' => 'query',
+                    'type'     => 'integer',
+                    'enum'     => array(0, 1),
+                    'required' => false,
+                ),
             ),
         ),
         'GetCampaign' => array(
