@@ -5,6 +5,7 @@ return array(
     'apiVersion'  => 'v1',
     'description' => 'Mgrt',
     'includes'     => array(
+        'core.php',
         'accounts.php',
         'apiKeys.php',
         'campaigns.php',

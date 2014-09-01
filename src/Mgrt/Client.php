@@ -44,6 +44,22 @@ class Client extends BaseClient
     }
 
     /**
+     * CORE
+     */
+    public function getHelloWorld()
+    {
+        $command = $this->getCommand('HelloWorld');
+
+        return $this->execute($command);
+    }
+    public function getSystemDate()
+    {
+        $command = $this->getCommand('SystemDate');
+
+        return $this->execute($command);
+    }
+
+    /**
      * ACCOUNTS
      */
     public function getAccount()
