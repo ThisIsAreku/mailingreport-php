@@ -16,6 +16,7 @@ class WebhookCallInput extends BaseModel
     protected $payload;
     protected $valid;
     protected $secret_key;
+    protected $is_test = false;
 
     public function fromInputs($input = null)
     {
@@ -41,7 +42,9 @@ class WebhookCallInput extends BaseModel
         $parsedBody = json_decode($body, true);
         if ($parsedBody['payload'] == 'Hello World!') {
             // this request is a test call; exit now
-            exit();
+            $is_test = true;
+
+            return $this->fromArray(compact('id', 'signature', 'valid', 'is_test'));
         }
 
         if (!is_array($parsedBody['payload'])) {
