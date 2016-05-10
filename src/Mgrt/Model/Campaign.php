@@ -8,6 +8,7 @@ class Campaign extends BaseModel
 {
     protected $id;
     protected $mailing_lists = array();
+    protected $segments = array();
     protected $name;
     protected $subject;
     protected $body;
@@ -28,6 +29,16 @@ class Campaign extends BaseModel
         foreach ($datas as $key => $value) {
             $mailingList = new MailingList();
             $this->mailing_lists[] = $mailingList->fromArray($value);
+        }
+
+        return $this;
+    }
+
+    public function setSegments(array $datas)
+    {
+        foreach ($datas as $key => $value) {
+            $segment = new Segment();
+            $this->segments[] = $segment->fromArray($value);
         }
 
         return $this;

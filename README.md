@@ -170,6 +170,7 @@ _Getters_
 * ```$campaign->getId()``` will return an ```integer```.
 * ```$campaign->getName()``` will return a ```string```.
 * ```$campaign->getMailingLists()``` will return an array of ```MailingList``` objects.
+* ```$campaign->getSegments()``` will return an array of ```Segment``` objects.
 * ```$campaign->getSubject()``` will return a ```string```.
 * ```$campaign->getBody()``` will return a ```string```.
 * ```$campaign->getFromMail()``` will return a ```string```.
@@ -187,7 +188,8 @@ _Getters_
 _Setters_
 
 * ```$campaign->setName($name)``` where ```$name``` is a ```string```.
-* ```$campaign->setMailingLists($mailingList)``` where ```$mailingList``` is an array of ```MailingList``` objects.
+* ```$campaign->setMailingLists($mailingLists)``` where ```$mailingLists``` is an array of ```MailingLists``` objects.
+* ```$campaign->setSegments($segments)``` where ```$segments``` is an array of ```Segments``` objects.
 * ```$campaign->setSubject($subject)``` where ```$subject``` is a ```string```.
 * ```$campaign->setBody($body)``` where ```$body``` is a ```string```.
 * ```$campaign->setFromMail($fromMail)``` where ```$fromMail``` is a ```string```.

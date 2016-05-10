@@ -162,6 +162,7 @@ class Client extends BaseClient
                 'replyMail' => $campaign->getReplyMail(),
                 'body' => $campaign->getBody(),
                 'mailingLists' => array_filter($campaign->getMailingLists(), function($mailingList) { return $mailingList->getId(); }),
+                'segments' => array_map(function($segment) { return $segment->getId(); }, $campaign->getSegments())
             ),
         ));
 
